@@ -20,7 +20,9 @@ export default function Post({ post }) {
         </h5>
         <p className="card-text">{post.body}</p>
         {post.tags.map((tag) => (
-          <span className="badge text-bg-primary hashtag">{tag}</span>
+          <span key={tag} className="badge text-bg-primary hashtag">
+            {tag}
+          </span>
         ))}
         <div className="alert alert-success reactions" role="alert">
           This post has been reacted by {post.reactions} people.
