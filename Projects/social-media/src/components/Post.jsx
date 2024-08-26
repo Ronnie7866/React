@@ -7,13 +7,18 @@ export default function Post({ post }) {
 
   return (
     <div className="card post-card" style={{ width: "30rem" }}>
-      <img src="..." className="card-img-top" alt="..." />
+      <img
+        src={post.imageUrl || "default-image-path.jpg"} // Replace with actual default image path
+        className="card-img-top"
+        alt={post.title}
+      />
       <div className="card-body">
         <h5 className="card-title">
           {post.title}
           <span
             className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
             onClick={() => deletePost(post.id)}
+            style={{ cursor: "pointer" }}
           >
             <MdDeleteForever />
           </span>
@@ -25,7 +30,14 @@ export default function Post({ post }) {
           </span>
         ))}
         <div className="alert alert-success reactions" role="alert">
-          This post has been reacted by {post.reactions} people.
+          This post has received the following reactions:
+          <ul>
+            {Object.entries(post.reactions).map(([key, value]) => (
+              <li key={key}>
+                {key}: {value}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
